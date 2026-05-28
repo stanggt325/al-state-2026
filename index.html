@@ -3,65 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 Alabama State Championship</title>
+
+    <title>Kimber 2026 USPSA Alabama State Championship sponsored by BELT</title>
 
     <style>
-        body {
+
+        * {
             margin: 0;
-            background: #111;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
             color: white;
             font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .nav-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
+            padding: 120px 20px 60px;
+            background:
+                radial-gradient(circle at top, rgba(225,29,72,0.15), transparent 40%),
+                #0a0a0a;
         }
 
-        .container {
-            max-width: 700px;
-            padding: 20px;
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .logo {
+            width: 220px;
+            margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
-        p {
-            color: #bbb;
-            font-size: 1.2rem;
+        .subtitle {
+            color: #aaa;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .location {
+            color: #777;
+            margin-bottom: 40px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 28px;
-            background: #e11d48;
-            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
             text-decoration: none;
-            border-radius: 10px;
             font-weight: bold;
+            transition: 0.2s;
         }
 
-        .button:hover {
-            background: #be123c;
+        .primary {
+            background: #e11d48;
+            color: white;
         }
+
+        .primary:hover {
+            background: #be123c;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        .secondary:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* INFO STRIP */
+
+        .info-strip {
+            width: 100%;
+            padding: 24px;
+            background: #111;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .info-item h2 {
+            color: #e11d48;
+            margin-bottom: 8px;
+        }
+
+        .info-item p {
+            color: #aaa;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 20px;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2.7rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .logo {
+                width: 160px;
+            }
+
+            .button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+        }
+
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>2026 Alabama State Championship</h1>
+    <nav>
 
-    <p>
-        Welcome to the official digital matchbook.
-    </p>
+        <div class="nav-title">
+            AL State 2026
+        </div>
 
-    <a class="button" href="#">
-        View Match Info
-    </a>
-</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Stages</a>
+            <a href="#">Schedule</a>
+            <a href="#">Sponsors</a>
+            <a href="#">Map</a>
+        </div>
+
+    </nav>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <img src="images/logo.png" class="logo">
+
+            <h1>
+                Kimber 2026 USPSA Alabama State Championship
+            </h1>
+
+            <p class="subtitle">
+                Presented by BELT
+            </p>
+
+            <p class="location">
+                CMP Talladega Marksmanship Park • June 11–14, 2026
+            </p>
+
+            <div class="button-group">
+
+                <a class="button primary" href="#">
+                    View Match Info
+                </a>
+
+                <a class="button secondary" href="#">
+                    View Stages
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="info-strip">
+
+        <div class="info-item">
+            <h2>10</h2>
+            <p>Stages</p>
+        </div>
+
+        <div class="info-item">
+            <h2>272</h2>
+            <p>Minimum Rounds</p>
+        </div>
+
+        <div class="info-item">
+            <h2>350+</h2>
+            <p>Recommended Rounds</p>
+        </div>
+
+        <div class="info-item">
+            <h2>Level II</h2>
+            <p>USPSA Match</p>
+        </div>
+
+    </section>
 
 </body>
 </html>
