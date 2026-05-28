@@ -1,13 +1,12 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Kimber 2026 USPSA Alabama State Championship sponsored by BELT</title>
+    <title>Kimber 2026 USPSA Alabama State Championship presented by BELT</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -20,8 +19,6 @@
             font-family: Arial, sans-serif;
             overflow-x: hidden;
         }
-
-        /* NAVBAR */
 
         nav {
             width: 100%;
@@ -51,14 +48,11 @@
         .nav-links a {
             color: #ccc;
             text-decoration: none;
-            transition: 0.2s;
         }
 
         .nav-links a:hover {
             color: white;
         }
-
-        /* HERO */
 
         .hero {
             min-height: 100vh;
@@ -78,6 +72,7 @@
 
         .logo {
             width: 550px;
+            max-width: 90%;
             margin-bottom: 30px;
         }
 
@@ -85,11 +80,7 @@
             font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 20px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow:
-                0 0 10px rgba(225,29,72,0.15);
+            text-shadow: 0 0 10px rgba(225,29,72,0.15);
         }
 
         .subtitle {
@@ -139,7 +130,31 @@
             background: rgba(255,255,255,0.06);
         }
 
-        /* INFO STRIP */
+        .overview {
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px;
+        }
+
+        .overview-card {
+            max-width: 900px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .overview-card h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .overview-card p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
 
         .info-strip {
             width: 100%;
@@ -147,7 +162,6 @@
             background: #111;
             border-top: 1px solid rgba(255,255,255,0.05);
             border-bottom: 1px solid rgba(255,255,255,0.05);
-
             display: flex;
             justify-content: center;
             gap: 50px;
@@ -164,10 +178,7 @@
             color: #aaa;
         }
 
-        /* MOBILE */
-
         @media (max-width: 768px) {
-
             nav {
                 padding: 20px;
                 flex-direction: column;
@@ -183,12 +194,8 @@
                 font-size: 2.7rem;
             }
 
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
             .logo {
-                width: 160px;
+                width: 320px;
             }
 
             .button {
@@ -201,64 +208,64 @@
                 align-items: center;
             }
 
+            .overview-card {
+                padding: 32px;
+            }
         }
-
     </style>
 </head>
+
 <body>
 
     <nav>
-
-        <div class="nav-title">
-            AL State 2026
-        </div>
+        <div class="nav-title">AL State 2026</div>
 
         <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Stages</a>
-            <a href="#">Schedule</a>
-            <a href="#">Sponsors</a>
-            <a href="#">Map</a>
+            <a href="index.html">Home</a>
+            <a href="stages.html">Stages</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="sponsors.html">Sponsors</a>
+            <a href="map.html">Map</a>
         </div>
-
     </nav>
 
     <section class="hero">
-
         <div class="hero-content">
+            <img src="images/logo.png" class="logo" alt="2026 Alabama State Championship Logo">
 
-            <img src="images/logo.png" class="logo">
+            <h1>Kimber 2026 USPSA Alabama State Championship</h1>
 
-            <h1>
-                Kimber 2026 USPSA Alabama State Championship
-            </h1>
-
-            <p class="subtitle">
-                Presented by BELT
-            </p>
+            <p class="subtitle">Presented by BELT</p>
 
             <p class="location">
                 CMP Talladega Marksmanship Park • June 11–14, 2026
             </p>
 
             <div class="button-group">
-
-                <a class="button primary" href="#">
-                    View Match Info
-                </a>
-
-                <a class="button secondary" href="#">
-                    View Stages
-                </a>
-
+                <a class="button primary" href="briefing.html">View Match Info</a>
+                <a class="button secondary" href="stages.html">View Stages</a>
             </div>
-
         </div>
+    </section>
 
+    <section class="overview">
+        <div class="overview-card">
+            <h2>Major Match. Southern Hospitality.</h2>
+
+            <p>
+                The 2026 USPSA Alabama State Championship brings together top competitors
+                from across the region for a fast-paced Level II match hosted at the CMP
+                Talladega Marksmanship Park.
+            </p>
+
+            <p>
+                Expect challenging stage design, efficient match flow, premium sponsor support,
+                and a competitor experience built from the ground up by shooters.
+            </p>
+        </div>
     </section>
 
     <section class="info-strip">
-
         <div class="info-item">
             <h2>10</h2>
             <p>Stages</p>
@@ -278,8 +285,8 @@
             <h2>Level II</h2>
             <p>USPSA Match</p>
         </div>
-
     </section>
 
 </body>
 </html>
+```
