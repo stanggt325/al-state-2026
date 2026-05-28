@@ -1,0 +1,810 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Stages | Kimber 2026 USPSA Alabama State Championship</title>
+
+  <style>
+    :root {
+      --bg: #070707;
+      --panel: rgba(255,255,255,0.045);
+      --panel-strong: rgba(255,255,255,0.075);
+      --line: rgba(255,255,255,0.10);
+      --text: #ffffff;
+      --muted: #a8a8a8;
+      --dim: #777;
+      --red: #e11d48;
+      --red-dark: #be123c;
+      --gold: #f5c542;
+      --shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(225,29,72,0.18), transparent 32rem),
+        radial-gradient(circle at 85% 20%, rgba(245,197,66,0.08), transparent 24rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    nav {
+      width: 100%;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7,7,7,0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: #cfcfcf;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+      text-shadow: 0 0 14px rgba(225,29,72,0.45);
+    }
+
+    .page-hero {
+      padding: 150px 22px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+      pointer-events: none;
+    }
+
+    .page-hero-content {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .small-logo {
+      width: 170px;
+      max-width: 70%;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 22px 34px rgba(0,0,0,0.55));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.045);
+      color: #ddd;
+      font-size: 0.82rem;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 999px;
+      box-shadow: 0 0 18px rgba(225,29,72,0.9);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.75rem);
+      line-height: 1.02;
+      margin-bottom: 18px;
+      letter-spacing: -2px;
+      text-shadow:
+        0 0 12px rgba(225,29,72,0.18),
+        0 8px 30px rgba(0,0,0,0.35);
+    }
+
+    .lead {
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .summary-bar {
+      max-width: 1120px;
+      margin: -18px auto 70px;
+      padding: 0 22px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .summary-card {
+      background: rgba(18,18,18,0.88);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .summary-card h2 {
+      color: var(--red);
+      font-size: 1.9rem;
+      margin-bottom: 6px;
+    }
+
+    .summary-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 22px 90px;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      color: var(--red);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 780px;
+    }
+
+    .stage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .stage-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.22s ease;
+      position: relative;
+    }
+
+    .stage-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(225,29,72,0.35);
+      background: var(--panel-strong);
+    }
+
+    .stage-top {
+      padding: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(225,29,72,0.18), transparent 54%),
+        rgba(255,255,255,0.02);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stage-number {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--red);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    .stage-number::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--red);
+      box-shadow: 0 0 16px rgba(225,29,72,0.75);
+    }
+
+    .stage-card h3 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .designer {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .stage-body {
+      padding: 28px;
+    }
+
+    .stage-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .meta-box {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .meta-box strong {
+      display: block;
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .meta-box span {
+      color: var(--dim);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .wsb-preview {
+      border-left: 3px solid var(--red);
+      padding-left: 18px;
+      margin-bottom: 24px;
+    }
+
+    .wsb-preview h4 {
+      margin-bottom: 8px;
+    }
+
+    .wsb-preview p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 13px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.22s ease;
+      min-width: 135px;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #f43f5e, var(--red));
+      color: white;
+      box-shadow: 0 18px 40px rgba(225,29,72,0.20);
+    }
+
+    .primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 55px rgba(225,29,72,0.30);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+      color: white;
+    }
+
+    .secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.075);
+    }
+
+    .notice {
+      margin-top: 52px;
+      background:
+        linear-gradient(135deg, rgba(225,29,72,0.16), rgba(255,255,255,0.035));
+      border: 1px solid rgba(225,29,72,0.25);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .notice h3 {
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+    }
+
+    .notice p {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 22px;
+      color: var(--dim);
+      text-align: center;
+      background: rgba(0,0,0,0.26);
+    }
+
+    footer strong {
+      color: #ccc;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .summary-bar,
+      .stage-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page-hero {
+        padding-top: 155px;
+      }
+
+      .small-logo {
+        width: 140px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .summary-bar,
+      .stage-grid,
+      .stage-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .stage-card h3 {
+        font-size: 1.7rem;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-title">AL State 2026</div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="briefing.html">Briefing</a>
+      <a class="active" href="stages.html">Stages</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="map.html">Map</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <img src="images/logo.png" class="small-logo" alt="Kimber 2026 USPSA Alabama State Championship Logo" />
+
+      <div class="eyebrow">
+        <span class="pulse"></span>
+        Stage Briefings
+      </div>
+
+      <h1>Ten stages. One Alabama championship.</h1>
+
+      <p class="lead">
+        Stage details are approximate and subject to change for safety and match operations.
+        Final written stage briefings at the match control.
+      </p>
+    </div>
+  </section>
+
+  <section class="summary-bar">
+    <div class="summary-card">
+      <h2>10</h2>
+      <p>Total Stages</p>
+    </div>
+
+    <div class="summary-card">
+      <h2>272</h2>
+      <p>Minimum Rounds</p>
+    </div>
+
+    <div class="summary-card">
+      <h2>112</h2>
+      <p>USPSA Targets</p>
+    </div>
+
+    <div class="summary-card">
+      <h2>31</h2>
+      <p>Steel Targets</p>
+    </div>
+  </section>
+
+  <main>
+
+    <div class="section-header">
+      <div class="section-kicker">Course of Fire</div>
+      <h2>Stage list.</h2>
+      <p>
+        Each card includes scoring, target count, minimum rounds, start position, and procedure preview.
+        Downloadable PDFs can be wired in once the finalized WSB files are uploaded.
+      </p>
+    </div>
+
+    <section class="stage-grid">
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 1</div>
+          <h3>Opelika</h3>
+          <p class="designer">Designed by Jessie Henderson</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>23</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>10</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>3</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Standing anywhere completely outside the shooting area, facing down range with wrists above respective shoulders.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area. P1 activates S1, which is visible at rest.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 2</div>
+          <h3>Grant</h3>
+          <p class="designer">Designed by Jeremy Hughes, original by John Taylor</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>26</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>13</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>0</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Standing with feet on marks, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 3</div>
+          <h3>Tuscaloosa</h3>
+          <p class="designer">Designed by Jeremy Hughes</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>26</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>12</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>2</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Standing with both hands on marks, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 4</div>
+          <h3>Slapout</h3>
+          <p class="designer">Designed by Cameron Fricke</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>32</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>14</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>4</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Standing with feet on marks, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 5</div>
+          <h3>Evergreen</h3>
+          <p class="designer">Designed by Matthew Kennedy</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>26</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>11</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>4</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Both feet on marks. Handgun/PCC unloaded, lying flat on barrel, trigger guard over mark.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area. First magazine must come from the barrel.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 6</div>
+          <h3>Orange Beach</h3>
+          <p class="designer">Designed by Jeremy Hughes</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>29</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>13</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>3</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Straddling either side-fault line, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area. P1 activates S1 tip-out, visible at rest.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 7</div>
+          <h3>Talladega</h3>
+          <p class="designer">Designed by Andy Patel</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>29</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>13</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>3</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Standing anywhere in the shooting area, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area. P1 or P2 activates S1. S1 remains visible at rest.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 8</div>
+          <h3>Auburn</h3>
+          <p class="designer">Designed by Rodney Hawkins</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>27</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>11</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>5</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Standing with both feet on marks, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 9</div>
+          <h3>Eclectic</h3>
+          <p class="designer">Designed by Jeremy Hughes</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>29</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>13</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>2</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Standing with both feet touching marks, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area. Either P1 or P2 activates Max Trap, not visible at rest.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="stage-card">
+        <div class="stage-top">
+          <div class="stage-number">Stage 10</div>
+          <h3>Ohatchee</h3>
+          <p class="designer">Designed by Colton Dover</p>
+        </div>
+        <div class="stage-body">
+          <div class="stage-meta">
+            <div class="meta-box"><strong>25</strong><span>Rounds</span></div>
+            <div class="meta-box"><strong>10</strong><span>Paper</span></div>
+            <div class="meta-box"><strong>5</strong><span>Steel</span></div>
+          </div>
+          <div class="wsb-preview">
+            <h4>Start Position</h4>
+            <p>Toes of both feet touching rear faultline, facing down range with wrists below belt.</p>
+          </div>
+          <div class="wsb-preview">
+            <h4>Procedure</h4>
+            <p>Engage all targets from within the shooting area.</p>
+          </div>
+          <div class="button-row">
+            <a class="button primary" href="#">View WSB</a>
+            <a class="button secondary" href="#">Stage PDF</a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="notice">
+      <h3>Stage drawings and WSBs are preliminary.</h3>
+      <p>
+        Stage designs, target positions, activators, props, and procedures may change for safety,
+        range conditions, or match operations. Final written stage briefings at the match control.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>Kimber 2026 USPSA Alabama State Championship</strong><br />
+      CMP Talladega Marksmanship Park • Talladega, Alabama
+    </p>
+  </footer>
+
+</body>
+</html>
+```
