@@ -1,0 +1,600 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Match Briefing | Kimber 2026 USPSA Alabama State Championship</title>
+
+  <style>
+
+    :root {
+      --bg: #070707;
+      --panel: rgba(255,255,255,0.045);
+      --panel-strong: rgba(255,255,255,0.075);
+      --line: rgba(255,255,255,0.10);
+      --text: #ffffff;
+      --muted: #a8a8a8;
+      --dim: #777;
+      --red: #e11d48;
+      --red-dark: #be123c;
+      --gold: #f5c542;
+      --shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(225,29,72,0.18), transparent 32rem),
+        radial-gradient(circle at 85% 20%, rgba(245,197,66,0.08), transparent 24rem),
+        var(--bg);
+
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    nav {
+      width: 100%;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7,7,7,0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: #cfcfcf;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+      text-shadow: 0 0 14px rgba(225,29,72,0.45);
+    }
+
+    .hero {
+      padding: 150px 22px 70px;
+      text-align: center;
+      position: relative;
+    }
+
+    .small-logo {
+      width: 170px;
+      max-width: 70%;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 22px 34px rgba(0,0,0,0.55));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.045);
+      color: #ddd;
+      font-size: 0.82rem;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 999px;
+      box-shadow: 0 0 18px rgba(225,29,72,0.9);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.02;
+      margin-bottom: 18px;
+      letter-spacing: -2px;
+      text-shadow:
+        0 0 12px rgba(225,29,72,0.18),
+        0 8px 30px rgba(0,0,0,0.35);
+    }
+
+    .lead {
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 22px 90px;
+    }
+
+    .warning-banner {
+      margin-bottom: 40px;
+      background:
+        linear-gradient(135deg, rgba(225,29,72,0.16), rgba(255,255,255,0.035));
+      border: 1px solid rgba(225,29,72,0.25);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .warning-banner h2 {
+      margin-bottom: 12px;
+      font-size: 1.6rem;
+    }
+
+    .warning-banner p {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .briefing-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .briefing-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at top right, rgba(225,29,72,0.18), transparent 54%),
+        rgba(255,255,255,0.02);
+    }
+
+    .card-header h2 {
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .card-header p {
+      color: var(--muted);
+    }
+
+    .card-body {
+      padding: 28px;
+    }
+
+    .card-body p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .rule-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .rule-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .rule-item strong {
+      display: block;
+      color: white;
+      margin-bottom: 6px;
+    }
+
+    .rule-item span {
+      color: var(--muted);
+      line-height: 1.7;
+      display: block;
+    }
+
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .staff-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .staff-card h3 {
+      margin-bottom: 6px;
+    }
+
+    .staff-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 22px;
+      color: var(--dim);
+      text-align: center;
+      background: rgba(0,0,0,0.26);
+      margin-top: 70px;
+    }
+
+    footer strong {
+      color: #ccc;
+    }
+
+    @media (max-width: 900px) {
+
+      nav {
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .staff-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 620px) {
+
+      .hero {
+        padding-top: 155px;
+      }
+
+      .small-logo {
+        width: 140px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .card-header,
+      .card-body,
+      .warning-banner {
+        padding: 22px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+
+    <div class="nav-title">
+      AL State 2026
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a class="active" href="briefing.html">Briefing</a>
+      <a href="stages.html">Stages</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="map.html">Map</a>
+    </div>
+
+  </nav>
+
+  <section class="hero">
+
+    <img src="images/logo.png" class="small-logo">
+
+    <div class="eyebrow">
+      <span class="pulse"></span>
+      Match Information
+    </div>
+
+    <h1>Match Briefing</h1>
+
+    <p class="lead">
+      Everything competitors, staff, and spectators need to know before stepping onto the range.
+    </p>
+
+  </section>
+
+  <main>
+
+    <section class="warning-banner">
+
+      <h2>Alabama Summer Warning ☀️</h2>
+
+      <p>
+        This match takes place in June in Alabama. Expect significant sun exposure,
+        heat, humidity, and limited shade on portions of the range. Please hydrate
+        before, during, and after the match. Complimentary bottled water will be
+        available in every bay.
+      </p>
+
+    </section>
+
+    <section class="briefing-grid">
+
+      <article class="briefing-card">
+
+        <div class="card-header">
+          <h2>Match Leadership & Staff</h2>
+          <p>The people keeping the machine running.</p>
+        </div>
+
+        <div class="card-body">
+
+          <div class="staff-grid">
+
+            <div class="staff-card">
+              <h3>Jim Palmer</h3>
+              <p>Match Director</p>
+            </div>
+
+            <div class="staff-card">
+              <h3>Gary McConnell</h3>
+              <p>Range Master</p>
+            </div>
+
+            <div class="staff-card">
+              <h3>Jeremy Hughes</h3>
+              <p>Co-Match Director & Stage Design</p>
+            </div>
+
+            <div class="staff-card">
+              <h3>Steve Fischer</h3>
+              <p>Stats</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="briefing-card">
+
+        <div class="card-header">
+          <h2>Match Scoring</h2>
+          <p>Live score handling and arbitration procedures.</p>
+        </div>
+
+        <div class="card-body">
+
+          <div class="rule-list">
+
+            <div class="rule-item">
+              <strong>PractiScore Live Scoring</strong>
+              <span>
+                Scores will be uploaded continuously throughout the match.
+                No paper score postings will be used.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Review Scores Frequently</strong>
+              <span>
+                Competitors are responsible for reviewing their scores and
+                immediately reporting any discrepancies to shooter services.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Arbitration Period</strong>
+              <span>
+                Arbitration begins when final scores are posted and lasts one hour
+                unless reduced by majority competitor consent.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="briefing-card">
+
+        <div class="card-header">
+          <h2>Range Safety</h2>
+          <p>Cold range procedures and firearm handling rules.</p>
+        </div>
+
+        <div class="card-body">
+
+          <div class="rule-list">
+
+            <div class="rule-item">
+              <strong>Cold Range</strong>
+              <span>
+                Firearms may only be handled in designated safety areas or under
+                direct supervision of a Range Officer.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Safety Areas</strong>
+              <span>
+                No ammunition may be handled inside safety areas. These areas are
+                for bagging, holstering, dry fire, and firearm maintenance only.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Eye & Ear Protection</strong>
+              <span>
+                Mandatory for all competitors and spectators while on range property.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="briefing-card">
+
+        <div class="card-header">
+          <h2>PCC Rules</h2>
+          <p>Specific handling requirements for PCC competitors.</p>
+        </div>
+
+        <div class="card-body">
+
+          <div class="rule-list">
+
+            <div class="rule-item">
+              <strong>Carry Condition</strong>
+              <span>
+                PCCs must be carried vertically with chamber flags installed until
+                instructed otherwise by an RO.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Casing Requirements</strong>
+              <span>
+                To be considered cased, the firearm sleeve must extend from the muzzle
+                past the trigger guard.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Muzzle Safety</strong>
+              <span>
+                Unsafe muzzle direction during casing or uncasing may result in disqualification.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="briefing-card">
+
+        <div class="card-header">
+          <h2>Match Operations</h2>
+          <p>Keeping the match running smoothly.</p>
+        </div>
+
+        <div class="card-body">
+
+          <div class="rule-list">
+
+            <div class="rule-item">
+              <strong>Stage Resetting</strong>
+              <span>
+                Competitors are expected to help paste, reset steel, and maintain
+                efficient squad flow.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Inspection Period</strong>
+              <span>
+                Four minutes begins after the WSB is read. Negotiate obstacles only
+                during inspection or while scoring the previous shooter.
+              </span>
+            </div>
+
+            <div class="rule-item">
+              <strong>Alcohol & Drugs</strong>
+              <span>
+                Strictly prohibited on range property during match operations.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="briefing-card">
+
+        <div class="card-header">
+          <h2>Awards & Prize Table</h2>
+          <p>Recognition and prize procedures.</p>
+        </div>
+
+        <div class="card-body">
+
+          <p>
+            Awards will follow USPSA Appendix A2 requirements and will recognize
+            overall winners, Alabama State Champions, and class placements by division.
+          </p>
+
+          <p>
+            Random draw prizes will be distributed throughout the match day.
+            Firearm winners are responsible for transfer fees and applicable FFL shipping.
+          </p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <p>
+      <strong>Kimber 2026 USPSA Alabama State Championship</strong><br>
+      CMP Talladega Marksmanship Park • Talladega, Alabama
+    </p>
+
+  </footer>
+
+</body>
+</html>
+```
